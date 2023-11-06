@@ -1,4 +1,5 @@
 import os
+import pandas as pd
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from dotenv import load_dotenv
@@ -24,8 +25,8 @@ def get_gss_worksheet(sheet_name):
 
 def main():
     ws = get_gss_worksheet('名簿')
-    value = ws.acell('B10').value
-    print(value)
+    Data = pd.DataFrame(ws.get_all_values())
+    print(Data)
 
 
 main()
